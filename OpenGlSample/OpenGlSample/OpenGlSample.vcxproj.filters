@@ -798,6 +798,12 @@
     <ClInclude Include="Sphere.h">
       <Filter>헤더 파일들</Filter>
     </ClInclude>
+    <ClInclude Include="LoadBackground.h">
+      <Filter>헤더 파일들</Filter>
+    </ClInclude>
+    <ClInclude Include="House.h">
+      <Filter>헤더 파일들</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="glm\detail\func_common.inl">
@@ -1225,6 +1231,12 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Sphere.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadBackground.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="House.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

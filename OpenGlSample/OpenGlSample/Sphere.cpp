@@ -4,7 +4,7 @@ Sphere::Sphere(FileManager* filepath)
 {
 	TextureID = glGetUniformLocation(programID, "myTextureSampler");
 
-	filepath->loadOBJ("sphere.obj", vertices, uvs, normals);
+	filepath->loadOBJ("containerx.obj", vertices, uvs, normals);
 
 	programID = filepath->LoadShaders("20161614_vs.shader", "20161614_fs.shader");
 

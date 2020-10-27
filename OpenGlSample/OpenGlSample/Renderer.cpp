@@ -69,14 +69,89 @@ void Renderer::render(RenderableObject* src_obj)
 	// Use our shader
 	glUseProgram(src_obj->programID);
 
-	// Compute the MVP matrix from keyboard and mouse input
-	glm::mat4 ProjectionMatrix = glm::perspective(glm::radians(45.0f), 4.0f / 3.0f, 0.1f, 100.0f);
-	// Camera matrix
-	glm::mat4 ViewMatrix = glm::lookAt(
-		glm::vec3(0, 5, 7), // Camera is at (4,3,3), in World Space
-		glm::vec3(0, 0, 0), // and looks at the origin
-		glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
+	// glfwGetTime is called only once, the first time this function is called
+	static double lastTime = glfwGetTime();
+
+	// Compute time difference between current and last frame
+	double currentTime = glfwGetTime();
+	float deltaTime = float(currentTime - lastTime);
+
+	// Get mouse position
+	double xpos, ypos;
+	glfwGetCursorPos(GetWindow(), &xpos, &ypos);
+
+	// 마우스 커서 숨기기
+	glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+
+	// Reset mouse position for next frame
+	glfwSetCursorPos(GetWindow(), 1024 / 2, 768 / 2);
+
+	// Compute new orientation
+	horizontalAngle += MouseSpeed * float(1024 / 2 - xpos);
+	verticalAngle += MouseSpeed * float(768 / 2 - ypos);
+
+	glm::vec3 direction(
+		cos(verticalAngle) * sin(horizontalAngle),
+		sin(verticalAngle),
+		cos(verticalAngle) * cos(horizontalAngle)
 	);
+
+	// Right vector
+	glm::vec3 right = glm::vec3(
+		sin(horizontalAngle - 3.14f / 2.0f),
+		0,
+		cos(horizontalAngle - 3.14f / 2.0f)
+	);
+
+	// Up vector
+	glm::vec3 up = glm::cross(right, direction);
+
+	// Move forward
+	if (glfwGetKey(GetWindow(), GLFW_KEY_W) == GLFW_PRESS) {
+		position += direction * deltaTime * MoveSpeed;
+	}
+	// Move backward
+	if (glfwGetKey(GetWindow(), GLFW_KEY_S) == GLFW_PRESS) {
+		position -= direction * deltaTime * MoveSpeed;
+	}
+	// Strafe right
+	if (glfwGetKey(GetWindow(), GLFW_KEY_D) == GLFW_PRESS) {
+		position += right * deltaTime * MoveSpeed;
+	}
+	// Strafe left
+	if (glfwGetKey(GetWindow(), GLFW_KEY_A) == GLFW_PRESS) {
+		position -= right * deltaTime * MoveSpeed;
+	}
+
+	float FoV = initialFoV;
+
+	glm::mat4 MovePos = glm::mat4(1.0f);
+	MovePos = glm::translate(MovePos, src_obj->Position);
+
+	glm::mat4 RotatePos = glm::mat4(1.0f);
+	RotatePos = glm::rotate(RotatePos, (90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+
+	glm::mat4 ScalePos = glm::mat4(1.0f);
+	ScalePos = glm::scale(ScalePos, glm::vec3(2.0f, 2.0f, 2.0f));
+
+	glm::mat4 MoveCameraPos = glm::mat4(1.0f);
+	MoveCameraPos = glm::translate(MoveCameraPos, CameraPos);
+
+	// Compute the MVP matrix from keyboard and mouse input // 45.0f
+	glm::mat4 ProjectionMatrix = glm::perspective(glm::radians(FoV), 4.0f / 3.0f, 0.1f, 100.0f);
+	// Camera matrix
+	//glm::mat4 ViewMatrix = glm::lookAt(
+	//	glm::vec3(0, 5, 7), // Camera is at (4,3,3), in World Space
+	//	glm::vec3(0, 0, 0), // and looks at the origin
+	//	glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
+	glm::mat4 ViewMatrix = glm::lookAt(
+		position,           // Camera is here
+		position + direction, // and looks here : at the same position, plus "direction"
+		up                  // Head is up (set to 0,-1,0 to look upside-down)
+	);
+
+	// For the next frame, the "last time" will be "now"
+	lastTime = currentTime;
 
 	glm::mat4 ModelMatrix = glm::mat4(1.0);
 	ModelMatrix = getPosition(ModelMatrix, src_obj);
@@ -127,7 +202,7 @@ void Renderer::render(RenderableObject* src_obj)
 
 	// 3rd attribute buffer : normals
 	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, src_obj->normalbuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, (unsigned)src_obj->normalbuffer);
 	glVertexAttribPointer(
 		2,                                // attribute
 		3,                                // size
@@ -138,7 +213,7 @@ void Renderer::render(RenderableObject* src_obj)
 	);
 
 	// Draw the triangles !
-	glDrawArrays(GL_TRIANGLES, 0, src_obj->vertices.size());
+	glDrawArrays(GL_TRIANGLES, 0, (unsigned)src_obj->vertices.size());
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
@@ -164,6 +239,11 @@ void Renderer::renderObj()
 	}
 }
 
+void Renderer::SetCameraPos(float x, float y, float z)
+{
+	CameraPos = glm::vec3(x, y, z);
+}
+
 void Renderer::renderglClear()
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -175,15 +255,15 @@ void Renderer::renderSwap()
 	glfwPollEvents();
 }
 
-glm::mat4 Renderer::getPosition(glm::mat4 Model, RenderableObject* src_obj)
+glm::mat4 Renderer::getPosition(glm::mat4 ModelMatrix, RenderableObject* src_obj)
 {
 	float x, y, z;
 	x = src_obj->PosX;
 	y = src_obj->PosY;
 	z = src_obj->PosZ;
 
-	Model = glm::translate(Model, glm::vec3(x, y, z));
-	return Model;
+	ModelMatrix = glm::translate(ModelMatrix, glm::vec3(x, y, z));
+	return ModelMatrix;
 }
 
 void Renderer::Obj_Shutdown(RenderableObject* src_obj)
@@ -193,14 +273,13 @@ void Renderer::Obj_Shutdown(RenderableObject* src_obj)
 
 void Renderer::shutDown()
 {
-	for (int i = 0; i < Obj_List.size(); i++)
-	{
-		Obj_Shutdown(Obj_List[i]);
-	}
 	glfwTerminate();
 }
 
-//void Renderer::shutDown()
-//{
-//	glfwTerminate();
-//}
+void Renderer::renderEnd()
+{
+	if (glfwGetKey(GetWindow(), GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	{
+		exit(0);
+	}
+}

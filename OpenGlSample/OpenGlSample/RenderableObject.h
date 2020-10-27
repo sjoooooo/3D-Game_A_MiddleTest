@@ -3,6 +3,7 @@
 
 #include "Object.h"
 
+
 class RenderableObject : public Object
 {
 public:
@@ -24,12 +25,19 @@ public:
 	GLuint LightID;
 
 public:
+	// vec3의 좌표를 받아올 Position
+	glm::vec3 Position;
 
 	// 설정할 좌표를 받아올 X Y Z
 	float PosX, PosY, PosZ;
 
 	// 오브젝트의 좌표를 설정
 	void SetPosition(float x, float y, float z);
+
+	// 오브젝트의 회전각도를 설정
+	void RotateObj(float angle, float R_x, float R_y, float R_z);
+
+	float MoveSpeed = 1.0f;
 
 public:
 	virtual void shutDown() override;

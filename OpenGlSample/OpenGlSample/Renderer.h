@@ -38,10 +38,29 @@ public:
 
 	void renderglClear();
 	void renderSwap();
+	void renderEnd();
 	void Obj_Shutdown(RenderableObject* src_obj);
+	void SetCameraPos(float x, float y, float z);
 
 	virtual void Update(IUpdater *Iupdater) override;
 	virtual void shutDown() override;
+
+public:
+	glm::mat4 MovePosition = glm::mat4(1.0);
+
+	glm::vec3 CameraPos;
+
+	// Initial position : on +Z 카메라 시작 위치
+	glm::vec3 position = glm::vec3(0, 2, 10);
+	// Initial horizontal angle : toward -Z
+	float horizontalAngle = 3.14f;
+	// Initial vertical angle : none
+	float verticalAngle = 0.0f;
+	// Initial Field of View
+	float initialFoV = 45.0f;
+
+	float MoveSpeed = 5.0f;
+	float MouseSpeed = 0.005f;
 };
 
 #endif // !__RENDERER_H__

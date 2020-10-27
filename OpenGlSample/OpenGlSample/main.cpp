@@ -10,6 +10,8 @@
 #include "RenderableObject.h"
 #include "NonRenderableObject.h"
 #include "Sphere.h"
+#include "LoadBackground.h"
+#include "House.h"
 
 int main()
 {
@@ -18,18 +20,47 @@ int main()
 	Renderer* renderer = Renderer::instance();
 	renderer->init();
 
-	Sphere* sphere = new Sphere(filemgr);
-	renderer->addObject(sphere);
-	sphere->SetPosition(-1.0f, 0.0f, 0.0f);
+	Sphere* contatiner1 = new Sphere(filemgr);
+	renderer->addObject(contatiner1);
+	contatiner1->SetPosition(-10.0f, 0.0f, 0.0f);
 
-	RenderableObject* cube = new RenderableObject();
-	renderer->addObject(cube);
-	cube->SetPosition(1.0f, 0.0f, 0.0f);
+	Sphere* contatiner2 = new Sphere(filemgr);
+	renderer->addObject(contatiner2);
+	contatiner2->SetPosition(-10.0f, 0.0f, 10.0f);
+
+	Sphere* contatiner3 = new Sphere(filemgr);
+	renderer->addObject(contatiner3);
+	contatiner3->SetPosition(-10.0f, 0.0f, 20.0f);
+
+	LoadBackground* background = new LoadBackground(filemgr);
+	renderer->addObject(background);
+	background->SetPosition(0.0f, 0.0f, 0.0f);
+
+	House* house = new House(filemgr);
+	renderer->addObject(house);
+	house->SetPosition(30.0f, 0.5f, 10.0f);
+
+	RenderableObject* woodtower = new RenderableObject();
+	renderer->addObject(woodtower);
+	woodtower->SetPosition(10.0f, -0.5f, -10.0f);
+
+	RenderableObject* ground = new RenderableObject();
+	renderer->addObject(ground);
+	ground->SetPosition(0.0f, 0.0f, 0.0f);
+
 
 	filemgr->loadOBJs(
-		cube,
-		"cube.obj",
-		"goldskin.BMP",
+		ground,
+		"ground.obj",
+		"snow.BMP",
+		"20161614_vs.shader",
+		"20161614_fs.shader"
+	);
+
+	filemgr->loadOBJs(
+		woodtower,
+		"woodtower.obj",
+		"silverskin.BMP",
 		"20161614_vs.shader",
 		"20161614_fs.shader"
 	);
@@ -46,12 +77,17 @@ int main()
 
 		renderer->renderSwap();
 
+		renderer->renderEnd();
 	}
 
 	renderer->shutDown();
+	
 
-	delete cube;
-	delete sphere;
+	delete background;
+	delete ground;
+	delete contatiner1;
+	delete contatiner2;
+	delete contatiner3;
 	delete renderer;
 
 	return 0;
