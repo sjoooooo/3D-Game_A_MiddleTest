@@ -12,6 +12,7 @@
 #include "Sphere.h"
 #include "LoadBackground.h"
 #include "House.h"
+#include "TimeManager.h"
 
 int main()
 {
@@ -36,9 +37,9 @@ int main()
 	renderer->addObject(background);
 	background->SetPosition(0.0f, 0.0f, 0.0f);
 
-	House* house = new House(filemgr);
+	/*House* house = new House(filemgr);
 	renderer->addObject(house);
-	house->SetPosition(30.0f, 0.5f, 10.0f);
+	house->SetPosition(30.0f, 0.5f, 10.0f);*/
 
 	RenderableObject* woodtower = new RenderableObject();
 	renderer->addObject(woodtower);
@@ -72,8 +73,13 @@ int main()
 	{
 		renderer->renderglClear();
 
+		// 고정프레임 사용, 제거시 가변프레임이 됨
+		if (TimeManager::GetInstance()->IsRenderTiming())
+		{
+			renderer->Update(non_render_obj);
+		}
+
 		renderer->renderObj();
-		renderer->Update(non_render_obj);
 
 		renderer->renderSwap();
 

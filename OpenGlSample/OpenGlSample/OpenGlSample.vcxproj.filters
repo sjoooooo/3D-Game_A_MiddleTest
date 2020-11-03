@@ -804,6 +804,12 @@
     <ClInclude Include="House.h">
       <Filter>헤더 파일들</Filter>
     </ClInclude>
+    <ClInclude Include="ICheckFPS.h">
+      <Filter>인터페이스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeManager.h">
+      <Filter>헤더 파일들</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="glm\detail\func_common.inl">
@@ -1237,6 +1243,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="House.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
