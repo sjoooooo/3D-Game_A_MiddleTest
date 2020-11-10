@@ -1,10 +1,10 @@
 #ifndef __RENDERABLEOBJECT_H__
 #define __RENDERABLEOBJECT_H__
 
-#include "Object.h"
+#include "ObjectManager.h"
+#include <vector>
 
-
-class RenderableObject : public Object
+class RenderableObject : public ObjectManager
 {
 public:
 	GLuint VertexArrayID;
@@ -25,22 +25,20 @@ public:
 	GLuint LightID;
 
 public:
-	// vec3의 좌표를 받아올 Position
-	glm::vec3 Position;
 
 	// 설정할 좌표를 받아올 X Y Z
 	float PosX, PosY, PosZ;
 
-	// 오브젝트의 좌표를 설정
-	void SetPosition(float x, float y, float z);
+public:
+	RenderableObject();
 
-	// 오브젝트의 회전각도를 설정
-	void RotateObj(float angle, float R_x, float R_y, float R_z);
-
-	float MoveSpeed = 1.0f;
 
 public:
-	virtual void shutDown() override;
+	virtual void init() override {};
+	virtual void shutDown() override {};
+	virtual void Update() override {};
+	virtual void render() override {};
+	virtual void setPosition(float x, float y, float z) override {};
 
 };
 

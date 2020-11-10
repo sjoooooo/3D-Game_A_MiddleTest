@@ -4,7 +4,7 @@
 class IUpdater
 {
 public:
-	virtual void Update(IUpdater* Iupdater) = 0;
+	virtual void Update() = 0;
 };
 
 #endif // !__IUPDATER_H__

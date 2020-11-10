@@ -804,11 +804,20 @@
     <ClInclude Include="House.h">
       <Filter>헤더 파일들</Filter>
     </ClInclude>
-    <ClInclude Include="ICheckFPS.h">
-      <Filter>인터페이스 파일</Filter>
-    </ClInclude>
     <ClInclude Include="TimeManager.h">
       <Filter>헤더 파일들</Filter>
+    </ClInclude>
+    <ClInclude Include="IInit.h">
+      <Filter>인터페이스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyManager.h">
+      <Filter>헤더 파일들</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>헤더 파일들</Filter>
+    </ClInclude>
+    <ClInclude Include="ISetPos.h">
+      <Filter>인터페이스 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1246,6 +1255,9 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="TimeManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

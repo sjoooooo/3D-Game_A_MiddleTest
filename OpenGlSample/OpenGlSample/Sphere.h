@@ -20,6 +20,8 @@ public:
 
 	virtual void shutDown() override;
 
+	virtual void Update() override;
+
 };
 
 #endif // !__SPHERE_H_

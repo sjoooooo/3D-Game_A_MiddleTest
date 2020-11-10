@@ -36,6 +36,11 @@ void Sphere::SetSpherePosition(float x, float y, float z)
 	SphereX = x, SphereY = y, SphereZ = z;
 }
 
+void Sphere::Update()
+{
+
+}
+
 void Sphere::shutDown()
 {
 	glDeleteBuffers(1, &vertexbuffer);
