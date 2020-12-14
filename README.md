@@ -4,9 +4,15 @@
 
 ### 🎲 20161614 강성주
 
-#### 🎄 WIKI 페이지 주소
+## ✨ 진행 사항 WIKI 바로가기
 
-https://github.com/sjoooooo/3D-Game_A_MiddleTest/wiki/3D-%EA%B2%8C%EC%9E%84-%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90-%EC%9D%91%EC%9A%A9
+####  📗  [7주차 Wiki 정리](https://github.com/sjoooooo/3D-Game_A_MiddleTest/wiki/%EA%B2%8C%EC%9E%84-%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90-7%EC%A3%BC%EC%B0%A8)
+
+####  📓  [중간과제 Wiki 정리](https://github.com/sjoooooo/3D-Game_A_MiddleTest/wiki/%EA%B2%8C%EC%9E%84-%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90-%EC%A4%91%EA%B0%84%EA%B3%BC%EC%A0%9C)
+
+####  📘  [8주차 Wiki 정리](https://github.com/sjoooooo/3D-Game_A_MiddleTest/wiki/%EA%B2%8C%EC%9E%84-%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90-8%EC%A3%BC%EC%B0%A8)
+
+####  📙  [9주차 Wiki 정리](https://github.com/sjoooooo/3D-Game_A_MiddleTest/wiki/%EA%B2%8C%EC%9E%84-%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90-9%EC%A3%BC%EC%B0%A8)
 
 
 # 제출 사항
