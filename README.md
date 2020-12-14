@@ -6,7 +6,7 @@
 
 #### 🎄 WIKI 페이지 주소
 
-https://github.com/sjoooooo/3D-Game_A_MiddleTest.wiki.git
+https://github.com/sjoooooo/3D-Game_A_MiddleTest.wiki
 
 
 # 제출 사항
