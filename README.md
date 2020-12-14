@@ -14,6 +14,8 @@
 
 ####  📙  [9주차 Wiki 정리](https://github.com/sjoooooo/3D-Game_A_MiddleTest/wiki/%EA%B2%8C%EC%9E%84-%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90-9%EC%A3%BC%EC%B0%A8)
 
+####  📔  [기말과제 Wiki 정리](https://github.com/sjoooooo/3D-Game_A_MiddleTest/wiki/%EA%B2%8C%EC%9E%84-%EC%95%84%ED%82%A4%ED%85%8D%EC%B3%90-%EA%B8%B0%EB%A7%90%EA%B3%BC%EC%A0%9C)
+
 
 # 제출 사항
 
