@@ -2,6 +2,18 @@
 #include "FileManager.h"
 #include "KeyManager.h"
 
+glm::mat4 Object::getMatrixTranslatePosition(glm::mat4 Model, RenderableObject *obj)
+{
+	float a, b, c = 0;
+
+	a = obj->PosX;
+	b = obj->PosY;
+	c = obj->PosZ;
+
+	Model = glm::translate(Model, glm::vec3(a, b, c));
+	return Model;
+}
+
 void Object::init()
 {
 	FileManager *filemgr = FileManager::instance();
@@ -9,16 +21,8 @@ void Object::init()
 	filemgr->loadOBJs(this, "sphere.obj", "goldskin.bmp", "20161614_vs.shader", "20161614_fs.shader");
 
 	this->setPosition(0.0f, 0.0f, 0.0f);
-}
-
-void Object::setPosition(float x, float y, float z)
-{
-	PosX = x, PosY = y, PosZ = z;
-}
-
-void Object::Update()
-{
-
+	this->setCameraPos(0.0f, 0.0f, 0.0f);
+	this->setScale(0.0f, 0.0f, 0.0f);
 }
 
 void Object::render()
@@ -97,6 +101,10 @@ void Object::render()
 	glDisableVertexAttribArray(2);
 }
 
+void Object::Update()
+{
+
+}
 
 void Object::shutDown()
 {
@@ -108,3 +116,28 @@ void Object::shutDown()
 	glDeleteVertexArrays(1, &VertexArrayID);
 }
 
+void Object::setPosition(float x, float y, float z)
+{
+	position = glm::vec3(x, y, z);
+	//PosX = x, PosY = y, PosZ = z;
+}
+
+void Object::setRot(float speed, float x, float y, float z)
+{
+	rotSpeed = speed;
+	rotVec = glm::vec3(x, y, z);
+}
+
+void Object::setScale(float x, float y, float z)
+{
+	scaleVec = glm::vec3(x, y, z);
+	if (scaleVec.x != 0.0f || scaleVec.y != 0.0f || scaleVec.z != 0.0f)
+	{
+		Scale = glm::scale(Scale, scaleVec);
+	}
+}
+
+void Object::setCameraPos(float x, float y, float z)
+{
+	cameraPos = glm::vec3(-x, -y, -z);
+}

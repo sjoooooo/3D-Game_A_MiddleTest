@@ -5,6 +5,7 @@
 #include <sstream>
 #include <fstream>
 
+#include "Sphere.h"
 #include "Object.h"
 #include "FileManager.h"
 #include "RenderableObject.h"

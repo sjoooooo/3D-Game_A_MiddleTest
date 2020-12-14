@@ -2,21 +2,16 @@
 #define __SPHERE_H_
 
 #include "RenderableObject.h"
-#include "FileManager.h"
-#include "Object.h"
 
+class RenderableObject;
+class FileManager;
 
 class Sphere : public RenderableObject
 {
 public:
-	Sphere(FileManager * filepath);
+	Sphere();
 
-public:
-	glm::vec3 SpherePos;
-
-	float SphereX, SphereY, SphereZ;
-
-	void SetSpherePosition(float x, float y, float z);
+	virtual void setPosition(float x, float y, float z) override;
 
 	virtual void shutDown() override;
 

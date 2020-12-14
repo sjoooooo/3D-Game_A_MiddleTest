@@ -14,5 +14,5 @@ class ObjectManager : public ICleanUp, public IUpdater, public IInit, public IRe
 {
 public:
 
-	virtual ~ObjectManager() {}
+	virtual ~ObjectManager() {};
 };

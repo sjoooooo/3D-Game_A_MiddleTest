@@ -13,20 +13,6 @@ void KeyManager::UseKeyBoard()
 	double currentTime = glfwGetTime();
 	float deltaTime = float(currentTime - lastTime);
 
-	// Get mouse position
-	double xpos, ypos;
-	glfwGetCursorPos(renderer->window, &xpos, &ypos);
-
-	// 마우스 커서 숨기기
-	glfwSetInputMode(renderer->window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-
-	// Reset mouse position for next frame
-	glfwSetCursorPos(renderer->window, 1024 / 2, 768 / 2);
-
-	// Compute new orientation
-	horizontalAngle += MouseSpeed * float(1024 / 2 - xpos);
-	verticalAngle += MouseSpeed * float(768 / 2 - ypos);
-
 	glm::vec3 direction(
 		cos(verticalAngle) * sin(horizontalAngle),
 		sin(verticalAngle),
@@ -43,21 +29,21 @@ void KeyManager::UseKeyBoard()
 	// Up vector
 	glm::vec3 up = glm::cross(right, direction);
 
-	// Move forward
-	if (glfwGetKey(renderer->window, GLFW_KEY_W) == GLFW_PRESS) {
-		position += direction * deltaTime * MoveSpeed;
-	}
-	// Move backward
-	if (glfwGetKey(renderer->window, GLFW_KEY_S) == GLFW_PRESS) {
-		position -= direction * deltaTime * MoveSpeed;
+	//// Move forward
+	//if (glfwGetKey(renderer->window, GLFW_KEY_W) == GLFW_PRESS) {
+	//	position += direction * deltaTime * MoveSpeed;
+	//}
+	//// Move backward
+	//if (glfwGetKey(renderer->window, GLFW_KEY_S) == GLFW_PRESS) {
+	//	position -= direction * deltaTime * MoveSpeed;
+	//}
+	// Strafe left
+	if (glfwGetKey(renderer->window, GLFW_KEY_A) == GLFW_PRESS) {
+		position -= right * deltaTime * MoveSpeed;
 	}
 	// Strafe right
 	if (glfwGetKey(renderer->window, GLFW_KEY_D) == GLFW_PRESS) {
 		position += right * deltaTime * MoveSpeed;
-	}
-	// Strafe left
-	if (glfwGetKey(renderer->window, GLFW_KEY_A) == GLFW_PRESS) {
-		position -= right * deltaTime * MoveSpeed;
 	}
 
 	float FoV = initialFoV;
@@ -77,4 +63,21 @@ void KeyManager::UseKeyBoard()
 
 	// For the next frame, the "last time" will be "now"
 	lastTime = currentTime;
+}
+
+void KeyManager::UseMouse()
+{
+	// Get mouse position
+	double xpos, ypos;
+	glfwGetCursorPos(renderer->window, &xpos, &ypos);
+
+	// 마우스 커서 숨기기
+	glfwSetInputMode(renderer->window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+
+	// Reset mouse position for next frame
+	glfwSetCursorPos(renderer->window, 1024 / 2, 768 / 2);
+
+	// Compute new orientation
+	horizontalAngle += MouseSpeed * float(1024 / 2 - xpos);
+	verticalAngle += MouseSpeed * float(768 / 2 - ypos);
 }

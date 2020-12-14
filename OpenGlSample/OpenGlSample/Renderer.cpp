@@ -61,8 +61,8 @@ void Renderer::init()
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
 	// Set the mouse at the center of the screen
-	glfwPollEvents();
-	glfwSetCursorPos(window, 1024 / 2, 768 / 2);
+	//glfwPollEvents();
+	//glfwSetCursorPos(window, 1024 / 2, 768 / 2);
 
 	// Dark blue background
 	glClearColor(0.2f, 0.2f, 0.2f, 0.0f);
@@ -73,7 +73,7 @@ void Renderer::init()
 	glDepthFunc(GL_LESS);
 
 	// Cull triangles which normal is not towards the camera
-	glEnable(GL_CULL_FACE);
+	//glEnable(GL_CULL_FACE);
 
 	for (std::vector<RenderableObject*>::iterator iter = Obj_List.begin(); iter != Obj_List.end(); iter++)
 	{

@@ -39,7 +39,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -69,7 +69,9 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>..\..\Bin</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -115,6 +117,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CompositeObject.h" />
     <ClInclude Include="FileManager.h" />
     <ClInclude Include="glm\common.hpp" />
     <ClInclude Include="glm\detail\compute_common.hpp" />
@@ -360,7 +363,7 @@
     <ClInclude Include="glm\vec3.hpp" />
     <ClInclude Include="glm\vec4.hpp" />
     <ClInclude Include="glm\vector_relational.hpp" />
-    <ClInclude Include="House.h" />
+    <ClInclude Include="Gun.h" />
     <ClInclude Include="ICleanUp.h" />
     <ClInclude Include="IInit.h" />
     <ClInclude Include="include\GLFW\glfw3.h" />
@@ -521,8 +524,9 @@
     <None Include="20161614_vs.shader" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CompositeObject.cpp" />
     <ClCompile Include="FileManager.cpp" />
-    <ClCompile Include="House.cpp" />
+    <ClCompile Include="Gun.cpp" />
     <ClCompile Include="KeyManager.cpp" />
     <ClCompile Include="LoadBackground.cpp" />
     <ClCompile Include="main.cpp" />

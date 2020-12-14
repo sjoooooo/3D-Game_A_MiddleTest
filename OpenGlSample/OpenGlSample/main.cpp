@@ -11,14 +11,13 @@
 #include "NonRenderableObject.h"
 #include "Sphere.h"
 #include "LoadBackground.h"
-#include "House.h"
 #include "TimeManager.h"
+#include "CompositeObject.h"
 
 int main()
 {
 	FileManager* filemgr = FileManager::instance();
 	Renderer* renderer = Renderer::instance();
-	Object* sphere = new Object();
 	NonRenderableObject* non_render_obj = new NonRenderableObject();
 
 	renderer->init();
@@ -43,7 +42,6 @@ int main()
 	renderer->shutDown();
 	
 
-	delete sphere;
 	delete non_render_obj;
 
 	return 0;

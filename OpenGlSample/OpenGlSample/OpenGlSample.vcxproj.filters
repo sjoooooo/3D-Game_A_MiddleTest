@@ -774,9 +774,6 @@
     <ClInclude Include="FileManager.h">
       <Filter>헤더 파일들</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>헤더 파일들</Filter>
-    </ClInclude>
     <ClInclude Include="Renderer.h">
       <Filter>헤더 파일들</Filter>
     </ClInclude>
@@ -795,13 +792,7 @@
     <ClInclude Include="NonRenderableObject.h">
       <Filter>헤더 파일들</Filter>
     </ClInclude>
-    <ClInclude Include="Sphere.h">
-      <Filter>헤더 파일들</Filter>
-    </ClInclude>
     <ClInclude Include="LoadBackground.h">
-      <Filter>헤더 파일들</Filter>
-    </ClInclude>
-    <ClInclude Include="House.h">
       <Filter>헤더 파일들</Filter>
     </ClInclude>
     <ClInclude Include="TimeManager.h">
@@ -818,6 +809,18 @@
     </ClInclude>
     <ClInclude Include="ISetPos.h">
       <Filter>인터페이스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="CompositeObject.h">
+      <Filter>헤더 파일들</Filter>
+    </ClInclude>
+    <ClInclude Include="Gun.h">
+      <Filter>헤더 파일들</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>헤더 파일들</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>헤더 파일들</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1233,9 +1236,6 @@
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Object.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
@@ -1245,19 +1245,25 @@
     <ClCompile Include="NonRenderableObject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Sphere.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="LoadBackground.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="House.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="TimeManager.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="KeyManager.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="CompositeObject.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Gun.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

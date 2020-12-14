@@ -20,7 +20,9 @@ public:
 	};
 
 public:
+
 	void UseKeyBoard();
+	void UseMouse();
 
 public:
 
