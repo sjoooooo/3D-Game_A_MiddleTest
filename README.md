@@ -1,4 +1,4 @@
-# 3D-Game_A_FinalTest
+# Mini Game BY OPENGL3.3
 
 ## 🎮 게임아키텍쳐 기말과제
 
